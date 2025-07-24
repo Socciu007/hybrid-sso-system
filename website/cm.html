@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Trình quản lý thông tin xác thực (CM)</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="bg-light">
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>🔐 Xin chào, {{ user }} – Trình quản lý thông tin xác thực</h3>
+        <a class="btn btn-danger" href="/logout">Đăng xuất</a>
+      </div>
+
+      <form method="post" action="/cm/add" class="row g-2 mb-4">
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control"
+            name="service"
+            placeholder="Tên dịch vụ"
+            required
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="Tài khoản"
+            required
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Mật khẩu"
+            required
+          />
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary w-100" type="submit">
+            Thêm thông tin
+          </button>
+        </div>
+      </form>
+
+      <table class="table table-bordered bg-white shadow-sm">
+        <thead class="table-light">
+          <tr>
+            <th>Dịch vụ</th>
+            <th>Tài khoản</th>
+            <th>Mật khẩu</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in credentials %}
+          <tr>
+            <td>{{ item.service }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.password }}</td>
+            <td>
+              <a
+                href="/cm/delete/{{ loop.index0 }}"
+                class="btn btn-sm btn-danger"
+                >Xoá</a
+              >
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="4" class="text-center text-muted">
+              Chưa có thông tin nào.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="mt-4">
+        <a class="btn btn-outline-secondary me-2" href="/passwords"
+          >Trình quản lý mật khẩu</a
+        >
+        <a class="btn btn-outline-secondary" href="/fis">Hệ thống tài chính</a>
+      </div>
+    </div>
+  </body>
+</html>
