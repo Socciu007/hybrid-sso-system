@@ -3,27 +3,30 @@ from auth import generate_token, login_required
 from cm import render_cm
 from fis import render_fis
 from password_manager import render_passwords
+from users import get_user
 from middleware import LifespanMiddleware
 from asgiref.wsgi import WsgiToAsgi # type: ignore
 import uvicorn
 
-app = Flask(__name__, template_folder='../website')
+app = Flask(__name__, template_folder='../website', static_folder='../website/css')
 
 # Fake user
 USERS = {'admin': '123456'}
 
 @app.route('/')
-def home():
-  return redirect('/cm')
+@login_required
+def home(user, token):
+  return render_template('home.html', user=user, token=token)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
     user = request.form['username']
     pwd = request.form['password']
-    if user in USERS and USERS[user] == pwd:
+    user_data = get_user(user)
+    if user_data and user_data['password'] == pwd:
       token = generate_token(user)
-      resp = make_response(redirect('/cm'))
+      resp = make_response(redirect('/'))
       resp.set_cookie('token', token)
       return resp
     return "Login failed"
@@ -37,18 +40,18 @@ def logout():
 
 @app.route('/cm')
 @login_required
-def cm(user):
-  return render_cm(user)
+def cm(user, token):
+  return render_cm(user, token)
 
 @app.route('/fis')
 @login_required
-def fis(user):
-  return render_fis(user)
+def fis(user, token):
+  return render_fis(user, token)
 
 @app.route('/passwords')
 @login_required
-def passwords(user):
-  return render_passwords(user)
+def passwords(user, token):
+  return render_passwords(user, token)
 
 asgi_app = LifespanMiddleware(WsgiToAsgi(app))
 if __name__ == '__main__':

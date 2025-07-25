@@ -1,0 +1,34 @@
+body {
+  background-color: #f8f9fa;
+}
+.card {
+  min-width: 200px;
+}
+.app-logo {
+  max-height: 80px;
+  object-fit: contain;
+}
+.sidebar {
+  width: 200px;
+  height: fit-content;
+  padding: 10px 0;
+  background-color: #f0f0f0;
+}
+.main {
+  flex: 1;
+}
+.navbar-custom {
+  background-color: #6a1b9a;
+}
+.navbar-custom .navbar-brand {
+  color: white;
+}
+.card-footer {
+  background-color: white;
+  border-top: none;
+}
+
+.active {
+  background-color: #fff;
+  color: #6a1b9a;
+}

@@ -29,5 +29,5 @@ def login_required(f):
     user = verify_token(token)
     if not user:
       return redirect(url_for('login'))
-    return f(user, *args, **kwargs)
+    return f(user, token, *args, **kwargs)
   return decorated
