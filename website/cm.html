@@ -11,8 +11,8 @@
   <body class="bg-light">
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3>🔐 Xin chào, {{ user }} – Trình quản lý thông tin xác thực</h3>
-        <a class="btn btn-danger" href="/logout">Đăng xuất</a>
+        <h3>🔐 Hello, {{ user }} – Credential Manager</h3>
+        <a class="btn btn-outline-secondary" href="/">Back to home</a>
       </div>
 
       <form method="post" action="/cm/add" class="row g-2 mb-4">
@@ -21,7 +21,7 @@
             type="text"
             class="form-control"
             name="service"
-            placeholder="Tên dịch vụ"
+            placeholder="Service name"
             required
           />
         </div>
@@ -30,7 +30,7 @@
             type="text"
             class="form-control"
             name="username"
-            placeholder="Tài khoản"
+            placeholder="Account"
             required
           />
         </div>
@@ -39,13 +39,17 @@
             type="password"
             class="form-control"
             name="password"
-            placeholder="Mật khẩu"
+            placeholder="Password"
             required
           />
         </div>
         <div class="col-md-3">
-          <button class="btn btn-primary w-100" type="submit">
-            Thêm thông tin
+          <button
+            class="btn btn-primary w-100"
+            style="background-color: #3498db; border-color: #3498db"
+            type="submit"
+          >
+            Add
           </button>
         </div>
       </form>
@@ -53,9 +57,9 @@
       <table class="table table-bordered bg-white shadow-sm">
         <thead class="table-light">
           <tr>
-            <th>Dịch vụ</th>
-            <th>Tài khoản</th>
-            <th>Mật khẩu</th>
+            <th>Service</th>
+            <th>Account</th>
+            <th>Password</th>
             <th></th>
           </tr>
         </thead>
@@ -69,26 +73,23 @@
               <a
                 href="/cm/delete/{{ loop.index0 }}"
                 class="btn btn-sm btn-danger"
-                >Xoá</a
+                >Delete</a
               >
             </td>
           </tr>
           {% else %}
           <tr>
-            <td colspan="4" class="text-center text-muted">
-              Chưa có thông tin nào.
-            </td>
+            <td colspan="4" class="text-center text-muted">No data.</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
 
-      <div class="mt-4">
+      <!-- <div class="mt-4">
         <a class="btn btn-outline-secondary me-2" href="/passwords"
           >Trình quản lý mật khẩu</a
         >
-        <a class="btn btn-outline-secondary" href="/fis">Hệ thống tài chính</a>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>

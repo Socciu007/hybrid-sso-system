@@ -1,6 +1,110 @@
-<h2>Login</h2>
-<form method="post">
-  <input name="username" placeholder="Username">
-  <input name="password" type="password" placeholder="Password">
-  <button type="submit">Login</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #2980b9, #8e44ad);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        font-size: 2em;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #3498db;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background: #3498db;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background: #2980b9;
+      }
+
+      .form-footer {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .form-footer a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .form-footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login SSO</h2>
+      <form method="post">
+        <div class="form-group">
+          <input name="username" placeholder="Username" required />
+        </div>
+        <div class="form-group">
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit">Login</button>
+        <div class="form-footer">
+          <a href="#">Forgot password?</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
